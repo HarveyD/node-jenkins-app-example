@@ -45,3 +45,14 @@ jobs:
         file: ./Dockerfile
         push: true
         tags: ${{ secrets.DOCKER_USERNAME}}/seamlesshr:latest
+
+  deploy:
+    runs-on: ubuntu-latest
+    if: endsWith(github.ref, '/master')
+    needs: [Install_depencies_and_test, Build_image]
+    environment: 'prod'
+
+    steps:
+      - name: Test
+        uses: echo "I am just checking"
+     
