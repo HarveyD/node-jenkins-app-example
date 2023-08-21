@@ -7,7 +7,7 @@ on:
     branches:
     - '**'
 jobs:
-  build:
+  Install_depencies_and_test:
     runs-on: ubuntu-latest
     steps:
 
