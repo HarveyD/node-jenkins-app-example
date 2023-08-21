@@ -53,8 +53,19 @@ jobs:
     environment: 'prod'
 
     steps:
-      - name: Test
-        run: echo "I am just checking"
+    - name: SSH and deploy to server
+      uses: actions/checkout@v2 
+      env:
+        PRIVATE_KEY: ${{ secrets.PRIVATE_KEY  }}
+        HOSTNAME : ${{ secrets.HOSTNAME  }}
+        USER_NAME : ${{ secrets.USER_NAME  }}
+          
+      run: |
+        echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+        ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
+          cd /home/ubuntu &&
+          docker-compose up -d
+        ' 
 
   deploy_to_dev:
     runs-on: ubuntu-latest
