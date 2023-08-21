@@ -46,11 +46,21 @@ jobs:
         push: true
         tags: ${{ secrets.DOCKER_USERNAME}}/seamlesshr:latest
 
-  deploy:
+  deploy_to_prod:
     runs-on: ubuntu-latest
     if: endsWith(github.ref, '/master')
     needs: [Install_depencies_and_test, Build_image]
     environment: 'prod'
+
+    steps:
+      - name: Test
+        run: echo "I am just checking"
+
+  deploy_to_dev:
+    runs-on: ubuntu-latest
+    if: endsWith(github.ref, '/dev')
+    needs: [Install_depencies_and_test, Build_image]
+    environment: 'dev'
 
     steps:
       - name: Test
