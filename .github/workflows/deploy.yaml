@@ -40,11 +40,13 @@ jobs:
 
     - name: build and push image 
       uses: docker/build-push-action@v4
+      env: 
+        GITHUB_CONTEXT: ${{ toJson(github.run_number) }}
       with:
         context: .
         file: ./Dockerfile
         push: true
-        tags: ${{ secrets.DOCKER_USERNAME}}/seamlesshr:latest
+        tags: ${{ secrets.DOCKER_USERNAME}}/seamlesshr:$GITHUB_CONTEXT
 
   deploy_to_prod:
     runs-on: ubuntu-latest
