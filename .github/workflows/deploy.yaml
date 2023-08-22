@@ -71,19 +71,12 @@ jobs:
     if: endsWith(github.ref, '/dev')
     needs: [Install_depencies_and_test, Build_image]
     environment: 'dev'
-    outputs:
-      build_number: ${{ steps.buildnumber.outputs.build_number }}
 
     steps:
-      - name: Generate build number
-        id: buildnumber
-        uses: onyxmueller/build-tag-number@v1
-        with:
-          token: ${{secrets.github_token}}  
-      - name: Another step as an example
-        uses: actions/hello-world-docker-action@v1
-        with:
-          who-to-greet: ${{ steps.buildnumber.outputs.build_number }}
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
       - name: Test
         run: echo "I am just checking"
      
