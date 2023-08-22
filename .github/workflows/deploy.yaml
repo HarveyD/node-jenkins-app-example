@@ -54,7 +54,6 @@ jobs:
 
     steps:
     - name: SSH and deploy to server
-      uses: actions/checkout@v2 
       env:
         PRIVATE_KEY: ${{ secrets.PRIVATE_KEY  }}
         HOSTNAME : ${{ secrets.HOSTNAME  }}
