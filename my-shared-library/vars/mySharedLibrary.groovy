@@ -1,9 +1,13 @@
-"def prerequisite() {" 
-"    sh 'npm install'"
-"}"
-"    sh 'npm start &'"
-"}"
-"def test() {"
-"    sh 'npm test'"
-"}"
-"return this"
+def prerequisite() {
+    sh 'npm install'
+}
+
+def build() {
+    sh 'npm start &'
+}
+
+def test() {
+    sh 'npm test'
+}
+
+return this
