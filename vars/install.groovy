@@ -1,6 +1,4 @@
-tools{
-        nodejs 'Node-Build'
-    }
+
 def prerequisite() {
     
         // Run npm install
