@@ -9,21 +9,21 @@ pipeline {
         stage('prerequisite') {
             steps {
                 script {
-                    prerequisite()
+                    install.prerequisite()
                 }
             }
         }
         stage('Build') {
             steps {
                 script {
-                    build()
+                    install.build()
                 }
             }
         }
         stage('test') {
             steps {
                 script {
-                    test()
+                    install.test()
                 }
             }
         }
