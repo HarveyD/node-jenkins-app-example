@@ -9,7 +9,7 @@ pipeline {
         stage('prerequisite') {
             steps {
                 script {
-                    echo "abc_branch"
+                    echo "master branch"
                     install.prerequisite()
                 }
             }
@@ -17,7 +17,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    echo "abc_branch"
+                    echo "master branch"
                     install.build()
                 }
             }
@@ -25,7 +25,7 @@ pipeline {
         stage('test') {
             steps {
                 script {
-                    echo "abc_branch"
+                    echo "master branch"
                     install.test()
                 }
             }
